@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Whisper Room — a telephone escape</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf4f7;color:#213c50;font:15px/1.5 system-ui,sans-serif}button,input{font:inherit}button{cursor:pointer;border:1px solid #c5d8e2;border-radius:10px;background:white;color:#24475a;padding:10px 15px}button:hover{background:#e7f4fa;border-color:#79acbf}button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible{outline:3px solid #178aab;outline-offset:3px}.primary{background:#235d73;color:white;border-color:#235d73}.primary:hover{background:#327b91}.top{padding:22px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #d2e2e9}.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:800;color:#5c8395}h1{font-size:26px;margin:3px 0;font-weight:650;letter-spacing:-1px}.badge{border-radius:30px;background:#dcebf0;padding:8px 15px;font-size:12px}main{max-width:1500px;margin:auto;padding:24px;display:grid;grid-template-columns:minmax(500px,1fr) 355px;gap:22px}.view{background:linear-gradient(#dcebf2,#f5f9fb);border:1px solid #cfdee5;border-radius:20px;overflow:hidden;position:relative;height:570px;perspective:1050px}.scene{position:absolute;left:50%;top:51%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-13deg) rotateY(-12deg) scale(.85);transition:transform .4s}.room,.actor,.cube{transform-style:preserve-3d}.surface{position:absolute;backface-visibility:hidden}.floor{width:760px;height:660px;background:repeating-linear-gradient(0deg,transparent 0 81px,#adcbd433 82px 83px),repeating-linear-gradient(90deg,#c4e1ec 0 94px,#b7d5e1 95px 96px);transform:translate3d(-380px,-220px,0) rotateX(90deg);box-shadow:0 0 0 1px #b7d5e1}.back{width:760px;height:440px;background:#c5e1ed;transform:translate3d(-380px,-330px,-330px);border-bottom:12px solid #e1f0f5}.left{width:660px;height:440px;background:#b4d6e6;transform:translate3d(-710px,-330px,0) rotateY(90deg);border-bottom:12px solid #dcecf4}.right{width:660px;height:440px;background:#d4e8f1;transform:translate3d(50px,-330px,0) rotateY(-90deg);border-bottom:12px solid #e1eff5}.rug{position:absolute;width:530px;height:200px;background:#8db9cc55;border:3px solid #e0eff4;border-radius:60px;transform:translate3d(-265px,10px,10px) rotateX(90deg)}.walltitle{position:absolute;transform:translate3d(-290px,-282px,-328px);font-size:12px;letter-spacing:5px;color:#5e8b9c}.clock{position:absolute;width:78px;height:78px;border:7px solid #fff;border-radius:50%;background:#e7f3f7;transform:translate3d(-250px,-220px,-320px);box-shadow:0 5px 12px #476e7a20}.clock:before{content:'';position:absolute;left:29px;top:11px;width:3px;height:24px;background:#466b80}.clock:after{content:'';position:absolute;left:29px;top:32px;width:19px;height:3px;background:#466b80}.hotspot{position:absolute;box-shadow:0 7px 15px #33556618}.key{transform:translate3d(-240px,-264px,-311px);font-size:19px;padding:2px 12px;color:#95733a;background:#fff1bf}.cabinet{transform:translate3d(-285px,-35px,-288px);height:138px;width:148px;border:7px solid #f0dec1;background:linear-gradient(#d8c3a3 47%,#a28f75 48%,#f2dfbf 50%);color:#655e51;border-radius:5px}.door{transform:translate3d(178px,-169px,-312px);height:270px;width:138px;background:#739dab;border:9px solid #edf4f5;border-radius:60px 60px 0 0;color:white;padding-top:100px}.door:after{content:'●';position:absolute;right:13px;top:153px;color:#e9d69d}.plant{position:absolute;transform:translate3d(315px,20px,-210px);font-size:70px}.actor{position:absolute;transition:transform .7s}.cube{position:absolute;width:var(--w);height:var(--h)}.cube i{position:absolute;display:block;background:var(--c);border:1px solid #ffffff18}.cube .front,.cube .rear{width:var(--w);height:var(--h);transform:translateZ(calc(var(--d)/2))}.cube .rear{transform:rotateY(180deg) translateZ(calc(var(--d)/2))}.cube .side{width:var(--d);height:var(--h);left:calc((var(--w) - var(--d))/2);transform:rotateY(90deg) translateZ(calc(var(--w)/2));filter:brightness(.85)}.cube .side.other{transform:rotateY(-90deg) translateZ(calc(var(--w)/2))}.cube .cap{width:var(--w);height:var(--d);top:calc((var(--h) - var(--d))/2);transform:rotateX(90deg) translateZ(calc(var(--h)/2));filter:brightness(1.1)}.head{left:-24px;top:-135px;--w:48px;--h:48px;--d:42px;--c:#f2d4b9}.torso{left:-29px;top:-85px;--w:58px;--h:65px;--d:33px}.leg{top:-20px;--w:19px;--h:42px;--d:22px;--c:#476376}.leg.one{left:-24px}.leg.two{left:5px}.face{position:absolute;transform:translate3d(-17px,-128px,23px);font-size:22px;letter-spacing:6px;color:#3c515e}.tag{position:absolute;transform:translate3d(-79px,-200px,35px);width:158px;padding:7px 4px;text-align:center;background:#ffffffed;border-radius:10px;box-shadow:0 5px 15px #44677920;font-size:11px;white-space:nowrap}.tag strong{display:block;font-size:14px}.actor.talking .tag{background:#fff1b8;box-shadow:0 0 0 3px #e6c971}.shadow{position:absolute;width:85px;height:50px;border-radius:50%;background:#52758725;transform:translate3d(-42px,0px,0px) rotateX(90deg)}.view-caption{position:absolute;top:18px;left:20px;font-size:12px;color:#557989}.camera{position:absolute;bottom:17px;left:18px;display:flex;gap:6px}.camera button{font-size:12px;padding:7px 11px}.roomhint{position:absolute;bottom:21px;right:18px;font-size:11px;color:#567686}.panel{background:#fff;border:1px solid #d6e3e9;border-radius:18px;padding:21px}.panel h2{font-size:20px;letter-spacing:-.5px;margin:5px 0 9px}.muted{color:#65808e;font-size:13px}.line{display:flex;flex-direction:column;gap:8px;margin:16px 0}.person{display:flex;gap:9px;align-items:center;border:1px solid #dce7ec;border-radius:12px;padding:9px}.number{font-size:12px;color:#7693a2}.dot{width:11px;height:30px;border-radius:6px;background:var(--color)}.person .name{flex:1;font-size:13px}.name small{display:block;font-size:11px;color:#718b98}.move{padding:3px 7px;border:0;background:#eff5f8;border-radius:6px}.wide{width:100%}.feed{margin-top:16px;padding:14px;background:#f1f6f9;border-radius:12px;min-height:100px;font-size:13px}.feed p{margin:7px 0}.source{font-style:italic;color:#617a87}.bottom{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:22px}.inventory{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.item{font-size:12px;border:1px dashed #bfd1da;padding:7px 13px;border-radius:20px}.item.found{background:#e5f2e7;border-style:solid;color:#41734b}dialog{border:0;border-radius:20px;width:min(460px,90vw);padding:28px;color:#244052;box-shadow:0 25px 100px #16354844}dialog::backdrop{background:#183c5266;backdrop-filter:blur(4px)}dialog h2{margin-top:0}.dialog-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}input{padding:10px;width:100%;border:1px solid #b5cdd8;border-radius:9px}.toast{position:absolute;left:50%;top:60px;transform:translateX(-50%);width:80%;background:#fff9e9;padding:12px 18px;border-radius:12px;box-shadow:0 5px 20px #32546b20;text-align:center;font-size:13px;z-index:5;display:none}footer{text-align:center;color:#7a929e;font-size:11px;padding:0 20px 20px}@media(max-width:950px){main{grid-template-columns:1fr}.view{height:490px}.bottom{grid-template-columns:1fr}.scene{zoom:.8}.roomhint{display:none}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* Expressions stay attached to the front plane of each 3D head. */
+.face{width:44px;height:44px;transform:translate3d(-22px,-133px,23px);font-size:initial;letter-spacing:normal;pointer-events:none}
+.face svg{display:block;width:100%;height:100%;overflow:visible}
+.face .ink{fill:none;stroke:#344c5b;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.face .eyes{fill:#344c5b;transform-origin:22px 18px;animation:blink 6s infinite}
+#actor-literal .eyes{animation-delay:1.7s}#actor-opposite .eyes{animation-delay:3s}#actor-forgetful .eyes{animation-delay:4.2s}
+.face .cheek{fill:#d68e85;opacity:.45}.face .speaking-mouth,.face .happy-mouth,.face .happy-eyes{display:none}
+.actor.talking .rest-mouth{display:none}.actor.talking .speaking-mouth{display:block;transform-origin:22px 30px;animation:whisper .35s ease-in-out infinite alternate}
+.actor.celebrating .rest-mouth,.actor.celebrating .eyes,.actor.celebrating .brows{display:none}
+.actor.celebrating .happy-mouth,.actor.celebrating .happy-eyes{display:block}
+@keyframes blink{0%,44%,48%,100%{transform:scaleY(1)}46%{transform:scaleY(.12)}}
+@keyframes whisper{from{transform:scaleY(.65)}to{transform:scaleY(1.2)}}
+@media(prefers-reduced-motion:reduce){.face .eyes,.actor.talking .speaking-mouth{animation:none}}
+
+.player{transition:none;pointer-events:none}.player .tag{width:80px;transform:translate3d(-40px,-174px,35px);background:#fff1c9;color:#695126}.player .shadow{border:3px solid #d3a64b;background:#d3a64b33}
+.actor.nearby .tag{box-shadow:0 0 0 3px #34899e}.hotspot.nearby{outline:3px solid #34899e;outline-offset:4px}
+.walk-ui{position:absolute;bottom:60px;left:18px;right:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.walk-ui button{padding:7px 12px}.walk-help{font-size:12px;background:#ffffffeb;padding:8px 12px;border-radius:10px}
+.player.walking .leg{animation:step .25s ease-in-out infinite alternate}.player.walking .leg.two{animation-direction:alternate-reverse}
+@keyframes step{from{margin-top:-4px}to{margin-top:3px}}
+@media(prefers-reduced-motion:reduce){.player.walking .leg{animation:none}}
+</style></head><body>
+<header class="top"><div><div class="eyebrow">A tiny social escape game</div><h1>Whisper Room</h1></div><span class="badge" id="progress">01 / 03 · Find the key</span></header>
+<main><section class="view" aria-label="Interactive three dimensional escape room"><div class="view-caption">THE ROOM / walk up to a friend and press E</div><div class="toast" id="toast" role="status"></div><div class="scene" id="scene"><div class="room"><div class="surface floor"></div><div class="surface back"></div><div class="surface left"></div><div class="surface right"></div><div class="rug"></div><div class="walltitle">EVERY WORD TAKES A DETOUR.</div><div class="clock" aria-label="Wall clock"></div><button class="hotspot key" id="key" aria-label="Investigate above the clock">⌁</button><button class="hotspot cabinet" id="cabinet">CABINET<br>▰</button><button class="hotspot door" id="door">EXIT<br>◦ ◦ ◦</button><div class="plant" aria-hidden="true">🪴</div></div><div id="actors" style="transform-style:preserve-3d"></div><div id="player" class="actor player" aria-label="Your player character"></div></div><div class="walk-ui"><span class="walk-help">WASD / arrows: walk · E: interact · Q: next target</span><button id="interact" class="primary" disabled>Walk closer to interact</button></div><div class="camera"><button id="camleft" aria-label="Rotate view left">↶ View</button><button id="camreset">Center</button><button id="camright" aria-label="Rotate view right">View ↷</button></div><span class="roomhint">No timer. Think out loud.</span></section>
+<aside class="panel"><div class="eyebrow">The telephone line</div><h2>Good company. Bad reception.</h2><p class="muted">Arrange the four friends, then send a message. Each habit changes the words before they reach you.</p><div class="line" id="line"></div><button class="primary wide" id="send">▶ Pass the whisper</button><div class="feed" id="feed" aria-live="polite"><strong>Incoming message</strong><p class="source" id="source"></p><p>Talk to the friends to learn their rules. Use ↑ and ↓ to change their order.</p></div><button class="wide" id="hint" style="margin-top:12px">A gentle hint</button></aside>
+<div class="bottom"><section class="panel"><div class="eyebrow">Your objective</div><h2 id="objective">A key hiding in plain sight.</h2><p class="muted" id="objectiveText">The room's speaker has a clue, but it speaks in riddles. Use the telephone line to turn it into a useful instruction. Investigate the room when you have an idea.</p><div class="inventory"><span class="item" id="invkey">○ Brass key</span><span class="item" id="invcard">○ Exit card</span><span class="item" id="invescape">○ Fresh air</span></div></section><section class="panel"><div class="eyebrow">Field notes</div><p class="muted">Every change is deliberate: there is no random dialogue to guess around. A useful line keeps the important words intact and lets one friend's interpretation feed the next.</p><p class="muted">Walk with WASD or the arrow keys. Press E near a friend, the clock shelf, cabinet, or exit. Press Q to switch between nearby targets. Movement pauses during conversations.</p><button id="restart">Restart room</button></section></div></main><footer>WHISPER ROOM · playable prototype · built with native browser 3D · no installation or internet required</footer>
+<dialog id="dialog"><h2 id="dialogTitle"></h2><div id="dialogBody"></div><div class="dialog-actions" id="dialogActions"></div></dialog>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const people={
+ decoder:{name:'Mira',habit:'Decoder',color:'#a69bd1',about:'I turn poetic phrases into ordinary descriptions. “Night eye” becomes “round face.” “Backward count” becomes “descending digits.” “Cold shade” becomes “ocean color.” Someone else might know what those descriptions mean.',change:s=>s.replace(/night eye/gi,'round face').replace(/backward count/gi,'descending digits').replace(/cold shade/gi,'ocean color')},
+ literal:{name:'Theo',habit:'Literal Thinker',color:'#d9ad79',about:'I like concrete answers. A “round face” means a clock. “Descending digits” means 731. An “ocean color” means blue. I only recognize those exact descriptions.',change:s=>s.replace(/round face/gi,'clock').replace(/descending digits/gi,'731').replace(/ocean color/gi,'blue')},
+ opposite:{name:'Zig',habit:'Opposite Thinker',color:'#80bda9',about:'I flip certain things. Above and below swap. Blue and amber swap. If I hear a three-digit number, I reverse it. I leave other words alone.',change:s=>s.replace(/\b(above|below|blue|amber|\d{3})\b/gi,w=>({above:'below',below:'above',blue:'amber',amber:'blue'}[w.toLowerCase()]||w.split('').reverse().join('')))},
+ forgetful:{name:'Pip',habit:'Forgetful',color:'#d899a6',about:'I really am listening! But I always forget the final word. Exactly one word, every time. Maybe give me something unimportant at the end?',change:s=>s.trim().split(/\s+/).slice(0,-1).join(' ')}
+};
+const messages=['Look below the night eye please','Use the backward count please','Choose the cold shade please'];
+let order=['literal','forgetful','opposite','decoder'],stage=0,busy=false,angle=-12,run=0;
+function cube(cls,color){return `<div class="cube ${cls}" ${color?`style="--c:${color}"`:''}><i class="front"></i><i class="rear"></i><i class="side"></i><i class="side other"></i><i class="cap"></i></div>`}
+function face(id){
+ const expressions={
+  decoder:{label:'a curious smile',brows:'M10 11 Q14 8 18 11 M27 10 Q31 6 35 9',mouth:'M15 28 Q22 35 29 28'},
+  literal:{label:'a serious, thoughtful expression',brows:'M10 10 L18 10 M26 10 L34 10',mouth:'M16 30 L28 30'},
+  opposite:{label:'a mischievous smirk',brows:'M10 12 L18 9 M26 8 Q31 5 35 8',mouth:'M15 30 Q24 34 31 26'},
+  forgetful:{label:'a puzzled, worried expression',brows:'M10 12 L18 8 M26 8 L34 12',mouth:'M18 31 Q22 27 27 30'}
+ };
+ const e=expressions[id];
+ return `<div class="face" role="img" aria-label="${stage===3?'A delighted smile':e.label}"><svg viewBox="0 0 44 44" aria-hidden="true"><ellipse class="cheek" cx="9" cy="26" rx="4" ry="2.5"/><ellipse class="cheek" cx="35" cy="26" rx="4" ry="2.5"/><path class="ink brows" d="${e.brows}"/><g class="eyes"><ellipse cx="14" cy="18" rx="2.5" ry="3.5"/><ellipse cx="30" cy="18" rx="2.5" ry="3.5"/></g><path class="ink rest-mouth" d="${e.mouth}"/><ellipse class="ink speaking-mouth" cx="22" cy="30" rx="4" ry="5"/><path class="ink happy-eyes" d="M10 19 Q14 11 18 19 M26 19 Q30 11 34 19"/><path class="ink happy-mouth" fill="#b86e6c" d="M13 27 Q22 31 31 27 Q22 43 13 27Z"/></svg></div>`;
+}
+function render(){
+ $('line').innerHTML='';$('actors').innerHTML='';
+ order.forEach((id,i)=>{const p=people[id],row=document.createElement('div');row.className='person';row.innerHTML=`<span class="number">0${i+1}</span><span class="dot" style="--color:${p.color}"></span><div class="name"><strong>${p.name}</strong><small>${p.habit}</small></div>`;
+ for(const [label,delta] of [['↑',-1],['↓',1]]){const b=document.createElement('button');b.className='move';b.textContent=label;b.setAttribute('aria-label',`Move ${p.name} ${delta<0?'earlier':'later'}`);b.disabled=busy||i+delta<0||i+delta>3;b.onclick=()=>{[order[i],order[i+delta]]=[order[i+delta],order[i]];render()};row.append(b)}$('line').append(row);
+ const actor=document.createElement('div');actor.className='actor'+(stage===3?' celebrating':'');actor.id='actor-'+id;actor.style.transform=`translate3d(${(i-1.5)*145}px,82px,55px)`;actor.innerHTML=`<div class="shadow"></div>${cube('head')}${cube('torso',p.color)}${cube('leg one')}${cube('leg two')}${face(id)}<button class="tag"><strong>${p.name}</strong>${p.habit}</button>`;actor.querySelector('button').onclick=()=>interactWith(id);$('actors').append(actor);
+ });$('send').disabled=busy||stage===3;
+}
+function show(title,body,actions=[]){$('dialogTitle').textContent=title;$('dialogBody').textContent=body;$('dialogActions').innerHTML='';for(const [label,fn] of actions){const b=document.createElement('button');b.textContent=label;b.onclick=fn;$('dialogActions').append(b)}const b=document.createElement('button');b.textContent='Back to room';b.onclick=()=>$('dialog').close();$('dialogActions').append(b);if(!$('dialog').open)$('dialog').showModal()}
+function toast(text){$('toast').textContent=text;$('toast').style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').style.display='none',4500)}
+function update(){const titles=['A key hiding in plain sight.','Three digits. Four opinions.','One last change of perspective.','You found your way out.'];const details=['Find the key using the first whisper. Talk to your four companions and inspect the room.','The brass key fits the cabinet, but its keypad needs a three-digit code. The speaker has a new clue.','Your exit card powers the door. Now decode the final message and select the correct light.','A little patience, a little interpretation, and four unlikely collaborators. You escaped!'];$('progress').textContent=stage<3?`0${stage+1} / 03 · ${['Find the key','Open the cabinet','Unlock the exit'][stage]}`:'03 / 03 · Escaped';$('objective').textContent=titles[stage];$('objectiveText').textContent=details[stage];$('feed').innerHTML=stage<3?`<strong>Incoming message</strong><p class="source">“${messages[stage]}”</p><p>Ready for another interpretation?</p>`:'<strong>Message received. Door opened.</strong><p>Thanks for listening to all four of us.</p>';['invkey','invcard','invescape'].forEach((id,i)=>$(id).classList.toggle('found',stage>i));$('key').style.visibility=stage>0?'hidden':'visible';render()}
+function advance(){run++;busy=false;stage++;update()}
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function pass(){if(busy||stage===3)return;busy=true;const token=++run;render();let message=messages[stage];$('feed').innerHTML='<strong>Listen to the handoffs…</strong>';const initial=document.createElement('p');initial.className='source';initial.textContent='Speaker: “'+message+'”';$('feed').append(initial);for(const id of order){if(token!==run)return;const actor=$('actor-'+id);actor.classList.add('talking');await delay(850);if(token!==run)return;message=people[id].change(message);const p=document.createElement('p');p.textContent=people[id].name+': “'+(message||'…')+'”';$('feed').append(p);actor.classList.remove('talking')}const p=document.createElement('p');p.style.fontWeight='700';p.textContent='You hear: “'+message+'”';$('feed').append(p);busy=false;render()}
+function inspectKey(){if(stage!==0)return;show('A small brass key','You reach above the clock and find a key resting on the little shelf.',[['Take the key',()=>{$('dialog').close();advance();toast('Brass key collected. A new whisper is waiting.')} ]])}
+function inspectCabinet(){if(stage===0){show('The cabinet is locked','A brass keyhole sits beside a three-digit keypad. Find the key first.');return}if(stage>1){show('An empty cabinet','You already collected the exit card. Try the door.');return}show('The cabinet keypad','The key turns. Enter the three-digit code to release the second lock.');const input=document.createElement('input');input.placeholder='Three-digit code';input.inputMode='numeric';input.maxLength=3;input.setAttribute('aria-label','Cabinet code');$('dialogBody').append(document.createElement('br'),input);const btn=document.createElement('button');btn.className='primary';btn.textContent='Unlock';const submit=()=>{if(input.value.trim()==='137'){$('dialog').close();advance();toast('Exit card collected. One final whisper.')}else{input.setAttribute('aria-invalid','true');input.value='';input.placeholder='Not quite — try another code'}};btn.onclick=submit;input.onkeydown=e=>{if(e.key==='Enter')submit()};$('dialogActions').prepend(btn);input.focus()}
+function inspectDoor(){if(stage<2){show('The exit door','Its reader needs an exit card. There may be one in the cabinet.');return}if(stage===3){show('Fresh air!','You escaped the Whisper Room. Restart to try a different telephone line.');return}show('Pick the exit light','The card reader wakes up. Which color did the final whisper reveal?',['Blue','Amber','Green'].map(color=>[color,()=>{if(color==='Amber'){$('dialog').close();advance();$('door').style.background='#85b59b';show('You escaped!','Mira translates the moment, Theo calls it a success, Zig insists it is a beginning, and Pip forgets to say goodbye. Thanks for playing.')}else{$('dialogBody').textContent='That light blinks and goes dark. Remember: Zig reverses colors only after someone has named one.'}}]))}
+function camera(){ $('scene').style.transform=`rotateX(-13deg) rotateY(${angle}deg) scale(.85)` }
+$('send').onclick=pass;$('key').onclick=()=>interactWith('key');$('cabinet').onclick=()=>interactWith('cabinet');$('door').onclick=()=>interactWith('door');
+$('camleft').onclick=()=>{angle=Math.max(-28,angle-8);camera()};$('camright').onclick=()=>{angle=Math.min(28,angle+8);camera()};$('camreset').onclick=()=>{angle=-12;camera()};
+$('hint').onclick=()=>show('A gentle hint',stage===0?'Pip deletes the last word. “Please” is expendable. Mira describes something that Theo can identify.':stage===1?'Mira needs to go before Theo. Zig can reverse a number only after Theo has said it. Keep Pip away from the important final word.':stage===2?'Try Pip → Mira → Theo → Zig. Listen to how the color changes.':'You have already escaped. Nicely done.');
+$('restart').onclick=()=>show('Start again?','This resets your items and telephone line.',[['Restart',()=>{$('dialog').close();run++;stage=0;busy=false;resetPlayer();order=['literal','forgetful','opposite','decoder'];$('door').style.background='';update()}]]);
+
+const playerState={x:0,z:235},held=new Set();
+let selectedTarget=null,lastFrame=0;
+function targets(){
+ const list=order.map((id,i)=>({id,x:(i-1.5)*145,z:55,label:'Talk to '+people[id].name}));
+ if(stage===0)list.push({id:'key',x:-215,z:-260,label:'Inspect clock shelf'});
+ list.push({id:'cabinet',x:-211,z:-255,label:'Inspect cabinet'},{id:'door',x:247,z:-280,label:'Inspect exit'});
+ return list;
+}
+function nearbyTargets(){return targets().filter(t=>Math.hypot(t.x-playerState.x,t.z-playerState.z)<=112).sort((a,b)=>Math.hypot(a.x-playerState.x,a.z-playerState.z)-Math.hypot(b.x-playerState.x,b.z-playerState.z));}
+function canStand(x,z){
+ if(x < -342 || x > 342 || z < -287 || z > 287)return false;
+ if(order.some((_,i)=>Math.hypot(x-(i-1.5)*145,z-55)<53))return false;
+ if(x > -315 && x < -106 && z < -235)return false;
+ if(Math.hypot(x-327,z+190)<48)return false;
+ return true;
+}
+function movePlayer(dx,dz){
+ const length=Math.hypot(dx,dz);if(!length)return;
+ // Split movement into small steps so walls and people cannot be skipped.
+ const steps=Math.ceil(length/5);
+ for(let i=0;i<steps;i++){
+  if(canStand(playerState.x+dx/steps,playerState.z))playerState.x+=dx/steps;
+  if(canStand(playerState.x,playerState.z+dz/steps))playerState.z+=dz/steps;
+ }
+}
+function resetPlayer(){playerState.x=0;playerState.z=235;held.clear();selectedTarget=null;}
+function talkTo(id){
+ const p=people[id],i=order.indexOf(id),actions=[];
+ if(!busy&&stage<3){
+  for(const [label,delta] of [['Move earlier in line',-1],['Move later in line',1]]){
+   if(i+delta>=0&&i+delta<4)actions.push([label,()=>{[order[i],order[i+delta]]=[order[i+delta],order[i]];$('dialog').close();render()}]);
+  }
+  actions.push(['Start the telephone',()=>{$('dialog').close();pass()}]);
+ }
+ show(p.name+' · '+p.habit,p.about,actions);
+}
+function interactWith(id){
+ if($('dialog').open)return;
+ const target=nearbyTargets().find(t=>t.id===id);
+ if(!target){toast('Walk closer first. Use WASD or the arrow keys, then press E.');return}
+ held.clear();
+ if(people[id])talkTo(id);
+ else if(id==='key')inspectKey();
+ else if(id==='cabinet')inspectCabinet();
+ else if(id==='door')inspectDoor();
+}
+function refreshNearby(){
+ const near=nearbyTargets();
+ if(!near.some(t=>t.id===selectedTarget))selectedTarget=near[0]?.id||null;
+ const target=near.find(t=>t.id===selectedTarget);
+ $('interact').disabled=!target||$('dialog').open;
+ $('interact').textContent=target?'E · '+target.label+(near.length>1?' (Q: switch)':''):'Walk closer to interact';
+ for(const t of targets())$(people[t.id]?'actor-'+t.id:t.id)?.classList.toggle('nearby',t.id===selectedTarget);
+}
+function playerFrame(time){
+ const dt=Math.min((time-lastFrame)/1000||0,.04);lastFrame=time;
+ let dx=0,dz=0;
+ if(!$('dialog').open&&!document.hidden){
+  dx=Number(held.has('d')||held.has('arrowright'))-Number(held.has('a')||held.has('arrowleft'));
+  dz=Number(held.has('s')||held.has('arrowdown'))-Number(held.has('w')||held.has('arrowup'));
+  const length=Math.hypot(dx,dz);
+  if(length)movePlayer(dx/length*165*dt,dz/length*165*dt);
+ }
+ $('player').style.transform=`translate3d(${playerState.x}px,82px,${playerState.z}px)`;
+ $('player').classList.toggle('walking',!!(dx||dz));
+ refreshNearby();requestAnimationFrame(playerFrame);
+}
+$('player').innerHTML='<div class="shadow"></div>'+cube('head')+cube('torso','#e2b557')+cube('leg one')+cube('leg two')+face('decoder')+'<div class="tag"><strong>You</strong></div>';
+$('interact').onclick=()=>{if(selectedTarget)interactWith(selectedTarget)};
+window.addEventListener('keydown',event=>{
+ if($('dialog').open||event.target.matches('input,textarea,select')||event.target.isContentEditable)return;
+ const key=event.key.toLowerCase();
+ if(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(key)){event.preventDefault();held.add(key)}
+ if(key==='e'&&!event.repeat){event.preventDefault();if(selectedTarget)interactWith(selectedTarget)}
+ if(key==='q'&&!event.repeat){event.preventDefault();const near=nearbyTargets();if(near.length)selectedTarget=near[(near.findIndex(t=>t.id===selectedTarget)+1)%near.length].id;}
+});
+window.addEventListener('keyup',event=>held.delete(event.key.toLowerCase()));
+window.addEventListener('blur',()=>held.clear());
+document.addEventListener('visibilitychange',()=>held.clear());
+$('dialog').addEventListener('close',()=>held.clear());
+requestAnimationFrame(playerFrame);
+
+update();
+</script></body></html>
+
